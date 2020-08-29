@@ -1,0 +1,15 @@
+lang cplusplus
+pk kudroma
+    pk structures_theory
+        pk sysved
+            cl Sysved 
+            cl StrongTheory : sysved
+            cl RecipeKnowledge : sysved
+        pk ved_seelctor
+            cl VedSelector
+            cl Enumerator : VedSelector
+            cl FullGraphBuilder : VedSelector
+            cl MostRelevantTopic : VedSelector
+            cl SelfStudyingSelector : VedSelector
+			
+			
