@@ -5,15 +5,12 @@
 
 using namespace kudroma::code_assistant;
 
-std::string ItemFactory::package_{ "pk" };
-std::string ItemFactory::class_{ "cl" };
-
-std::shared_ptr<Item> kudroma::code_assistant::ItemFactory::createItem(const std::string& item, const QDir& dir, const std::string& name)
+std::shared_ptr<Item> kudroma::code_assistant::ItemFactory::createItem(const ItemType& type, const fs::path& dir, const std::string& name, const std::shared_ptr<Item> parent)
 {
-    if (item == package_)
-        return std::make_shared<PackageItem>(dir, name);
-    if (item == class_)
-        return std::make_shared<ClassItem>(dir, name);
+    if (type == ItemType::Package)
+        return std::make_shared<PackageItem>(dir, name, parent);
+    if (type == ItemType::Class)
+        return std::make_shared<ClassItem>(dir, name, parent);
     else
         return nullptr;
 }

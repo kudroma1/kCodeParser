@@ -9,9 +9,9 @@ namespace code_assistant {
 class PackageItem : public Item
 {
 public:
-    PackageItem(const QDir& dir, const std::string& name);
+    PackageItem(const fs::path& dir, const std::string& name, const std::shared_ptr<Item> parent);
 
-    void action(QSharedPointer<Lang> lang) override;
+    void addItem(std::shared_ptr<Item> item) override;
 };
 }}
 

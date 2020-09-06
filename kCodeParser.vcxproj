@@ -86,14 +86,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_HAS_CXX17;_HAS_CXX20</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;C:\Libraries\boost\boost_1_72_0\boost_1_72_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-x64-1_72.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -103,16 +104,17 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_HAS_CXX17;_HAS_CXX20</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;C:\Libraries\boost\boost_1_72_0\boost_1_72_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-x64-1_72.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -120,15 +122,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_HAS_CXX17;_HAS_CXX20</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;C:\Libraries\boost\boost_1_72_0\boost_1_72_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-gd-x64-1_72.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-gd-x64-1_74.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,37 +140,38 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_HAS_CXX17;_HAS_CXX20</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;C:\Libraries\boost\boost_1_72_0\boost_1_72_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-x64-1_72.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="classgeneratorfactory.cpp" />
     <ClCompile Include="classitem.cpp" />
-    <ClCompile Include="cplusplus.cpp" />
+    <ClCompile Include="cplusplusclassgenerator.cpp" />
+    <ClCompile Include="iclassgenerator.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="itemfactory.cpp" />
     <ClCompile Include="kCodeParser.cpp" />
-    <ClCompile Include="lang.cpp" />
-    <ClCompile Include="LangFactory.cpp" />
     <ClCompile Include="packageitem.cpp" />
     <ClCompile Include="PackageParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="classgeneratorfactory.h" />
     <ClInclude Include="classitem.h" />
-    <ClInclude Include="cplusplus.h" />
+    <ClInclude Include="cplusplusclassgenerator.hpp" />
+    <ClInclude Include="iclassgenerator.hpp" />
     <ClInclude Include="item.h" />
     <ClInclude Include="itemfactory.h" />
-    <ClInclude Include="lang.h" />
-    <ClInclude Include="LangFactory.h" />
     <ClInclude Include="packageitem.h" />
     <ClInclude Include="PackageParser.hpp" />
   </ItemGroup>

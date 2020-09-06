@@ -2,11 +2,12 @@
 
 using namespace kudroma::code_assistant;
 
-Item::Item(const QDir& dir, const std::string& name) : dir_(dir), name_(name)
+Item::Item(const fs::path& dirPath, const std::string& name, const std::shared_ptr<Item> parent) : dirPath_(dirPath), name_(name), parent_(parent)
 {
 }
 
-void Item::addItem(const QSharedPointer<Item> item)
+void Item::addItem(std::shared_ptr<Item> item)
 {
-    childItems_.append(item);
+    if(item)
+        children_.push_back(item);
 }

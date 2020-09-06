@@ -1,14 +1,19 @@
 #include "packageitem.h"
 
+#include <boost/format.hpp>
+#include <boost/log/trivial.hpp>
+
 using namespace kudroma::code_assistant;
 
-PackageItem::PackageItem(const QDir &dir, const std::string& name) : Item(dir, name)
+PackageItem::PackageItem(const fs::path& dir, const std::string& name, const std::shared_ptr<Item> parent) : Item(dir, name, parent)
 {
     type_ = ItemType::Package;
 }
 
-void PackageItem::action(QSharedPointer<Lang> lang)
+void kudroma::code_assistant::PackageItem::addItem(std::shared_ptr<Item> item)
 {
-   // if(lang)
-   //     lang->createPackage(dir_, name_);
+    auto childPath = dirPath_;
+    childPath += fs::path(name_);
+    item->setDirPath(childPath);
+    Item::addItem(item);
 }

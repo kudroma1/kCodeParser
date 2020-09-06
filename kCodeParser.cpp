@@ -11,51 +11,12 @@
 
 using namespace kudroma::code_assistant;
 
-const std::string test_package_filename = "P:/kCodeParser/resources/sample_package_structure_1";
+const std::string test_package_filename = "D:/Projects/kCodeParser/resources/sample_package_structure_1";
 
 int main()
 {
     PackageParser parser;
     parser.parseFromFile(test_package_filename);
-
-    std::fstream file, out;
-    out.open("out.txt", std::ios_base::out);
-    file.open("D:/tmp/choose.csv", std::ios_base::in);
-    std::string line;
-    std::vector<std::string> parts;
-    std::map<std::string, std::vector<std::string> > voices;
-    if (file.is_open())
-    {
-        while (!file.eof())
-        {
-            std::getline(file, line);
-            boost::split(parts, line, boost::is_any_of(","));
-            int k = 0;
-            const auto fio = parts[parts.size() - 3];
-            boost::split(parts, parts[parts.size() - 2], boost::is_any_of(";"));
-            for (const auto& voice : parts)
-            {
-                if (voices.find(voice) != voices.cend())
-                    voices[voice].push_back(fio);
-                else
-                {
-                    voices[voice] = std::vector<std::string>();
-                    voices[voice].push_back(fio);
-                }
-            }
-        }
-
-        for (const auto& voice : voices)
-        {
-            out << voice.first << " ";
-            for (const auto& v : voice.second)
-                out << v << ",";
-            out << std::endl;
-        }
-
-        file.close();
-        out.close();
-    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

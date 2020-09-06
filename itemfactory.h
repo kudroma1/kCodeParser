@@ -1,17 +1,19 @@
 #pragma once
 
-#include <QtCore/QDir>
+#include "item.h"
 
+#include <filesystem>
 #include <memory>
 #include <string>
 
+namespace fs = std::filesystem;
+
 namespace kudroma { namespace code_assistant {
 
-    class Item;
     class ItemFactory
     {
     public:
-        static std::shared_ptr<Item> createItem(const std::string& item, const QDir& dir, const std::string& name);
+        static std::shared_ptr<Item> createItem(const ItemType& type, const fs::path& dir, const std::string& name, const std::shared_ptr<Item> parent);
 
     private:
         static std::string package_;

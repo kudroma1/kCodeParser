@@ -1,10 +1,11 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "lang.h"
+#include <filesystem>
+#include <memory>
+#include <vector>
 
-#include <QtCore/QDir>
-#include <QtCore/QSharedPointer>
+namespace fs = std::filesystem;
 
 namespace kudroma {
 namespace code_assistant {
@@ -18,19 +19,21 @@ namespace code_assistant {
     class Item
     {
     public:
-        Item(const QDir& dir, const std::string& name);
+        Item(const fs::path& dir, const std::string& name, const std::shared_ptr<Item> parent);
 
-        void addItem(const QSharedPointer<Item> item);
-
-        virtual void action(QSharedPointer<Lang> lang) = 0;
+        virtual void addItem(std::shared_ptr<Item> item);
+        void setDirPath(const fs::path& path) { dirPath_ = path; }
 
         ItemType type() const { return type_; }
 
+        std::weak_ptr<Item> parent() const { return parent_; }
+
     protected:
-        QList<QSharedPointer<Item> > childItems_;
-        QDir dir_;
+        std::vector<std::shared_ptr<Item> > children_;
+        fs::path dirPath_;
         std::string name_;
         ItemType type_{ ItemType::Item };
+        std::weak_ptr<Item> parent_;
     };
 }}
 
