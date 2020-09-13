@@ -1,0 +1,13 @@
+#pragma once
+
+/** @brief  */
+class %1%
+{
+public:
+    
+    /** @brief Default ctor. */
+    %1%() = default;
+    
+    /** @brief Default dtor. */
+    ~%1%() = default;
+};

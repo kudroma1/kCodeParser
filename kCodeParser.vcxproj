@@ -151,27 +151,27 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-x64-1_72.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-x64-1_74.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ClassDescription.cpp" />
     <ClCompile Include="classgeneratorfactory.cpp" />
     <ClCompile Include="classitem.cpp" />
     <ClCompile Include="cplusplusclassgenerator.cpp" />
     <ClCompile Include="iclassgenerator.cpp" />
     <ClCompile Include="item.cpp" />
-    <ClCompile Include="itemfactory.cpp" />
     <ClCompile Include="kCodeParser.cpp" />
     <ClCompile Include="packageitem.cpp" />
     <ClCompile Include="PackageParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClassDescription.h" />
     <ClInclude Include="classgeneratorfactory.h" />
     <ClInclude Include="classitem.h" />
     <ClInclude Include="cplusplusclassgenerator.hpp" />
     <ClInclude Include="iclassgenerator.hpp" />
     <ClInclude Include="item.h" />
-    <ClInclude Include="itemfactory.h" />
     <ClInclude Include="packageitem.h" />
     <ClInclude Include="PackageParser.hpp" />
   </ItemGroup>

@@ -2,7 +2,10 @@
 
 #include <boost/regex.hpp>
 
+#include <filesystem>
 #include <string>
+
+namespace fs = std::filesystem;
 
 namespace kudroma {  namespace code_assistant {
 
@@ -11,23 +14,31 @@ namespace kudroma {  namespace code_assistant {
     class PackageParser
     {
     public:
-        // 
-        bool parseFromFile(const std::string& filename);
+        bool parseProjectTree(const std::string& filename, const fs::path& dir);
+        bool buildProjectTree();
 
     private:
         bool parseLine(const std::string& line);
         std::string parseItemName(const std::string& line);
-        bool createPackageItem(const std::string& name);
+        std::shared_ptr<Item> createItem(const std::string& line, const std::shared_ptr<Item> parent);
         uint8_t parseHierarchyLevel(const std::string& line);
 
     private:
-        const boost::regex lang_{ "\\s*lang [a-zA-Z]*" };
-        const boost::regex package_{ "\\s*pk [a-zA-Z]*" };
-        const boost::regex class_{ "\\s*cl [a-zA-Z]*" };
+        const boost::regex langRegex_{ "\\s*lang [a-zA-Z]*" };
+        const boost::regex packageRegex_{ "\\s*pk [a-zA-Z_0-9]*\\s*" };
+        const boost::regex classRegex_{ "\\s*cl [a-zA-Z_0-9]*\\s*" };
+        const boost::regex classWithInheritanceRegex_{ "(\\s*cl [a-zA-Z_0-9]*\\s*):(\\s*[a-zA-Z_0-9]*\\s*)" };
 
         uint32_t spaceNum_{ 0 };
-        std::shared_ptr<Item> curItem_{ nullptr };
-        std::shared_ptr<IClassGenerator> classGenerator_{ nullptr };
+        std::shared_ptr<Item> rootItem_{ nullptr };
+        std::shared_ptr<Item> parentItem_{ nullptr };
+        std::shared_ptr<Item> lastItem_{ nullptr };
         uint8_t curHierarchyLevel_{ 0 };
+
+        uint8_t tabSize_{ 4 };
+
+        fs::path dir_;
+
+        std::string lang_;
     };
 }}

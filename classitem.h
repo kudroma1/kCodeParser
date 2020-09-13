@@ -6,10 +6,17 @@
 namespace kudroma {
 namespace code_assistant {
 
+class IClassGenerator;
+
 class ClassItem : public Item
 {
 public:
-    ClassItem(const fs::path& dir, const std::string& name, const std::shared_ptr<Item> parent);
+    ClassItem(const std::string& name, const std::string& lang, const std::shared_ptr<Item> parent);
+
+    bool build() override;
+
+private:
+    std::shared_ptr<IClassGenerator> classGenerator_{ nullptr };
 };
 }}
 

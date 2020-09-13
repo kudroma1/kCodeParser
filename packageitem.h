@@ -9,9 +9,11 @@ namespace code_assistant {
 class PackageItem : public Item
 {
 public:
-    PackageItem(const fs::path& dir, const std::string& name, const std::shared_ptr<Item> parent);
+    PackageItem(const std::string& name, const std::shared_ptr<Item> parent);
 
-    void addItem(std::shared_ptr<Item> item) override;
+    void add(std::shared_ptr<Item> item) override;
+
+    bool build() override;
 };
 }}
 

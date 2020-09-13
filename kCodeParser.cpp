@@ -16,7 +16,10 @@ const std::string test_package_filename = "D:/Projects/kCodeParser/resources/sam
 int main()
 {
     PackageParser parser;
-    parser.parseFromFile(test_package_filename);
+    parser.parseProjectTree(test_package_filename, "D:/Projects/kCodeParser/resources/result");
+    const auto res = parser.buildProjectTree();
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

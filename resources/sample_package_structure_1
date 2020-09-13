@@ -3,9 +3,9 @@ pk kudroma
     pk structures_theory
         pk sysved
             cl Sysved 
-            cl StrongTheory : sysved
-            cl RecipeKnowledge : sysved
-        pk ved_seelctor
+            cl StrongTheory : Sysved
+            cl RecipeKnowledge : Sysved
+        pk ved_selector
             cl VedSelector
             cl Enumerator : VedSelector
             cl FullGraphBuilder : VedSelector

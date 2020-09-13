@@ -16,21 +16,23 @@ namespace code_assistant {
         Package
     };
 
-    class Item
+    class Item : std::enable_shared_from_this<Item>
     {
     public:
-        Item(const fs::path& dir, const std::string& name, const std::shared_ptr<Item> parent);
+        Item(const std::string& name, const std::shared_ptr<Item> parent);
 
-        virtual void addItem(std::shared_ptr<Item> item);
-        void setDirPath(const fs::path& path) { dirPath_ = path; }
+        virtual void add(std::shared_ptr<Item> item);
+        void setDir(const fs::path& path) { dir_ = path; }
 
         ItemType type() const { return type_; }
 
         std::weak_ptr<Item> parent() const { return parent_; }
 
+        virtual bool build() = 0;
+
     protected:
         std::vector<std::shared_ptr<Item> > children_;
-        fs::path dirPath_;
+        fs::path dir_;
         std::string name_;
         ItemType type_{ ItemType::Item };
         std::weak_ptr<Item> parent_;

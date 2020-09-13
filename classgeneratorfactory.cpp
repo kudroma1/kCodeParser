@@ -8,9 +8,9 @@ using namespace kudroma::code_assistant;
 
 std::set<std::string> ClassGeneratorFactory::cplusplusPattern_ = { "cplusplus", "c++" };
 
-std::shared_ptr<IClassGenerator> kudroma::code_assistant::ClassGeneratorFactory::generateClassGenerator(const std::string& type)
+std::shared_ptr<IClassGenerator> kudroma::code_assistant::ClassGeneratorFactory::generateClassGenerator(const std::string& lang)
 {
-    auto local = type;
+    auto local = lang;
     boost::to_lower(local);
     if(cplusplusPattern_.find(local) != cplusplusPattern_.cend())
         return std::make_shared<CplusplusClassGenerator>();

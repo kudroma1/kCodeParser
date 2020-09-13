@@ -13,8 +13,13 @@
 
 using namespace kudroma::code_assistant;
 
-bool PackageParser::parseFromFile(const std::string& filename)
+bool PackageParser::parseProjectTree(const std::string& filename, const fs::path& dir)
 {
+    if (!fs::exists(dir))
+    {
+        BOOST_LOG_TRIVIAL(error) << boost::str(boost::format("%1% dir \"%2%\": doesn't exist") % __FUNCTION__ % dir);
+        return false;
+    }
     std::ifstream file;
     file.open(filename);
     if (file.is_open())
@@ -22,24 +27,21 @@ bool PackageParser::parseFromFile(const std::string& filename)
         std::string line;
         uint32_t lineNum{ 1 };
         spaceNum_ = 0;
-        curItem_ = nullptr;
-        classGenerator_ = nullptr;
+        parentItem_ = nullptr;
+        lastItem_ = nullptr;
+        rootItem_ = nullptr;
         curHierarchyLevel_ = 0;
+        dir_ = dir;
+        lang_ = "";
 
         // check lang
         std::getline(file, line);
-        if (boost::regex_match(line, lang_))
+        if (boost::regex_match(line, langRegex_))
         {
             std::vector<std::string> parts;
             boost::split(parts, line, boost::is_any_of(" "));
-            classGenerator_ = ClassGeneratorFactory::generateClassGenerator(parts.back());
-            if (!classGenerator_)
-            {
-                BOOST_LOG_TRIVIAL(error) << boost::str(boost::format("Line%1% in \"%3%\": Lang \"%2%\" is not known") % lineNum % parts.back() % filename);
-                return false;
-            }
-            else
-                BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("Lang : %1%") % parts.back());
+            lang_ = parts.back();
+            BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("Lang : %1%") % lang_);
         }
         else
         {
@@ -52,7 +54,8 @@ bool PackageParser::parseFromFile(const std::string& filename)
         {
             lineNum++;
             std::getline(file, line);
-            parseLine(line);
+            if (!parseLine(line))
+                break;
         }
     }
     else
@@ -66,65 +69,109 @@ bool PackageParser::parseFromFile(const std::string& filename)
     return true;
 }
 
+bool kudroma::code_assistant::PackageParser::buildProjectTree()
+{
+    if (rootItem_)
+        return rootItem_->build();
+    else
+    {
+        BOOST_LOG_TRIVIAL(error) << __FUNCTION__ << " root item is empty";
+    }
+}
+
 bool kudroma::code_assistant::PackageParser::parseLine(const std::string& line)
 {
     // Handle top-level package
-    if (!curItem_ && boost::regex_match(line, package_))
+    if (!parentItem_ && boost::regex_match(line, packageRegex_))
     {
         curHierarchyLevel_ = parseHierarchyLevel(line);
-        const auto name = parseItemName(line);
-        if (name.size())
-            return createPackageItem(name);
-        else
+        parentItem_ = createItem(line, nullptr);
+        lastItem_ = parentItem_;
+        if (!lastItem_)
         {
             BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("Line \"%1%\" doesn't contain package name") % line);
             return false;
         }
-    }
-    else
-    {
-        BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("Line \"%1%\" doesn't contain package") % line);
-        return false;
-    }
-
-    const auto level = parseHierarchyLevel(line);
-    if (level < curHierarchyLevel_)
-    {
-        if (!curItem_->parent().expired())
-            curItem_ = curItem_->parent().lock();
         else
         {
-            curItem_ = nullptr;
+            rootItem_ = lastItem_;
+            lastItem_->setDir(dir_);
             return true;
         }
     }
 
-    if (boost::regex_match(line, package_))
+    const auto level = parseHierarchyLevel(line);
+    // incorrect level handling
+    if (level < 0)
     {
-        std::vector<std::string> parts;
-        boost::split(parts, line, boost::is_any_of(" "));
-        if (parts.size() >= 2)
-            return createPackageItem(parts[1]);
+        BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("%2% Line \"%1%\" has bad hierarchy level") % line % __FUNCTION__);
+        return false;
+    }
+    // go to previous hierarchy level
+    else if (level < curHierarchyLevel_)
+    {
+        if (parentItem_ && !parentItem_->parent().expired())
+            parentItem_ = parentItem_->parent().lock();
         else
-            BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("Line \"%1%\" invalid package line '%2%'") % __FUNCTION__ % line);
+        {
+            BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("%2% Line \"%1%\": Finish parsing successfully.") % line % __FUNCTION__);
+            parentItem_ = nullptr;
+            return true;
+        }
+    }
+
+    lastItem_ = createItem(line, parentItem_);
+    if(parentItem_)
+        parentItem_->add(lastItem_);
+    if (lastItem_)
+    {
+        if (lastItem_->type() == ItemType::Package)
+            parentItem_ = lastItem_;
+        curHierarchyLevel_ = level;
+        return true;
+    }
+    else
+    {
+        BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("%2% Line \"%1%\": item was not created.") % line % __FUNCTION__);
+        return false;
     }
 }
 
 std::string kudroma::code_assistant::PackageParser::parseItemName(const std::string& line)
 {
+    auto local = line;
     std::vector<std::string> parts;
     boost::split(parts, line, boost::is_any_of(" "));
-    if (parts.size() >= 2)
-        return parts[1];
+    std::vector<std::string> words;
+    words.reserve(parts.size());
+    for (auto&& p : parts)
+    {
+        if (!p.empty())
+            words.emplace_back(std::move(p));
+    }
+    if (words.size() >= 2)
+        return words[1];
     else
         BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("Line \"%1%\" invalid package line '%2%'") % __FUNCTION__ % line);
 
     return std::string();
 }
 
-bool kudroma::code_assistant::PackageParser::createPackageItem(const std::string& name)
+std::shared_ptr<Item> kudroma::code_assistant::PackageParser::createItem(const std::string& line, const std::shared_ptr<Item> parent)
 {
-    return false;
+    if (boost::regex_match(line, packageRegex_))
+    {
+        const auto name = parseItemName(line);
+        return std::make_shared<PackageItem>(name, parent);
+    }
+    else if (boost::regex_match(line, classRegex_) 
+        || boost::regex_match(line, classWithInheritanceRegex_))
+    {
+        const auto name = parseItemName(line);
+        return std::make_shared<ClassItem>(name, lang_, parent);
+    }
+    else
+        return nullptr;
 }
 
 uint8_t kudroma::code_assistant::PackageParser::parseHierarchyLevel(const std::string& line)
@@ -135,6 +182,15 @@ uint8_t kudroma::code_assistant::PackageParser::parseHierarchyLevel(const std::s
     {
         if (line[i] == ' ')
             ++level;
+        else
+            break;
     }
-    return level;
+
+    if (level % tabSize_)
+    {
+        BOOST_LOG_TRIVIAL(debug) << boost::str(boost::format("Line '%1%' is not aligned by spaces"));
+        return -1;
+    }
+    else
+        return level / tabSize_;
 }
