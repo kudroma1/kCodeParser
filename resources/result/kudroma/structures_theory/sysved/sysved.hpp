@@ -1,5 +1,7 @@
 #pragma once
 
+namespace one{namespace two{namespace three{
+
 /** @brief  */
 class Sysved
 {
@@ -11,3 +13,5 @@ public:
     /** @brief Default dtor. */
     ~Sysved() = default;
 };
+
+}}}

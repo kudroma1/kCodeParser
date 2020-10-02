@@ -33,6 +33,7 @@ bool PackageParser::parseProjectTree(const std::string& filename, const fs::path
         curHierarchyLevel_ = 0;
         dir_ = dir;
         lang_ = "";
+        namespaces_.clear();
 
         // check lang
         std::getline(file, line);
@@ -81,6 +82,22 @@ bool kudroma::code_assistant::PackageParser::buildProjectTree()
 
 bool kudroma::code_assistant::PackageParser::parseLine(const std::string& line)
 {
+    // Handle namespaces
+    if (boost::regex_match(line, namespaceRegex_))
+    {
+        std::vector<std::string> namespaces;
+        boost::split(namespaces, line, boost::is_any_of(" "));
+        for (int i = namespaces.size() - 1; i >= 0; --i)
+        {
+            if (!namespaces[i].empty())
+            {
+                boost::split(namespaces_, namespaces[i], boost::is_any_of(":"));
+                break;
+            }
+        }
+        return true;
+    }
+
     // Handle top-level package
     if (!parentItem_ && boost::regex_match(line, packageRegex_))
     {
@@ -168,7 +185,7 @@ std::shared_ptr<Item> kudroma::code_assistant::PackageParser::createItem(const s
         || boost::regex_match(line, classWithInheritanceRegex_))
     {
         const auto name = parseItemName(line);
-        return std::make_shared<ClassItem>(name, lang_, parent);
+        return std::make_shared<ClassItem>(name, lang_, parent, namespaces_);
     }
     else
         return nullptr;

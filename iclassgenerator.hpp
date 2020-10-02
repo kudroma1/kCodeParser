@@ -16,12 +16,12 @@ public:
     static const std::uint_fast8_t EMPTY_FILE{ 0b0000'0100 };
     static const std::uint_fast8_t CLASS{ 0b0000'1000 };
 
-    bool generate(const fs::path& dir, std::string& name, const std::uint_fast8_t& properties = EMPTY_FILE);
+    bool generate(const fs::path& dir, std::string& name, std::vector<std::string> namespaces = std::vector<std::string>(), const std::uint_fast8_t& properties = EMPTY_FILE);
 
 protected:
-    virtual bool generateClass(const fs::path& dir, const std::string& classname) { return false; };
-    virtual bool generateHeader(const fs::path& dir, const std::string& classname) { return false; };
-    virtual bool generateSource(const fs::path& dir, const std::string& sourcename) { return false; };
+    virtual bool generateClass(const fs::path& dir, const std::string& classname, const std::vector<std::string>& namespaces = std::vector<std::string>()) { return false; };
+    virtual bool generateHeader(const fs::path& dir, const std::string& classname, const std::vector<std::string>& namespaces = std::vector<std::string>()) { return false; };
+    virtual bool generateSource(const fs::path& dir, const std::string& sourcename, const std::vector<std::string>& namespaces = std::vector<std::string>()) { return false; };
     virtual bool generateEmptyFile(const fs::path& dir, const std::string& filename);
 };
 

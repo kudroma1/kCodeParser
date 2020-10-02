@@ -43,12 +43,12 @@ kudroma::code_assistant::CplusplusClassGenerator::CplusplusClassGenerator()
     }
 }
 
-bool kudroma::code_assistant::CplusplusClassGenerator::generateClass(const fs::path& dir, const std::string& classname)
+bool kudroma::code_assistant::CplusplusClassGenerator::generateClass(const fs::path& dir, const std::string& classname, const std::vector<std::string>& namespaces)
 {
-    return generateHeader(dir, classname) && generateSource(dir, classname);
+    return generateHeader(dir, classname, namespaces) && generateSource(dir, classname, namespaces);
 }
 
-bool kudroma::code_assistant::CplusplusClassGenerator::generateHeader(const fs::path& dir, const std::string& classname)
+bool kudroma::code_assistant::CplusplusClassGenerator::generateHeader(const fs::path& dir, const std::string& classname, const std::vector<std::string>& namespaces)
 {
     std::fstream header;
     auto local = classname;
@@ -71,8 +71,14 @@ bool kudroma::code_assistant::CplusplusClassGenerator::generateHeader(const fs::
         }
         else
         {
-            auto h = boost::str(boost::format(headerTemplate_) % classname);
-            header.write(h.c_str(), h.size() - 12);
+            std::string namespacesStartStr, namespacesEndStr;
+            for (const auto& n : namespaces)
+            {
+                namespacesStartStr += boost::str(boost::format("namespace %1%{") % n);
+                namespacesEndStr += "}";
+            }
+            auto h = boost::str(boost::format(headerTemplate_) % namespacesStartStr % classname % namespacesEndStr);
+            header.write(h.c_str(), h.size() - 16);
             header.close();
         }
     }
@@ -82,7 +88,7 @@ bool kudroma::code_assistant::CplusplusClassGenerator::generateHeader(const fs::
     return true;
 }
 
-bool kudroma::code_assistant::CplusplusClassGenerator::generateSource(const fs::path& dir, const std::string& sourcename)
+bool kudroma::code_assistant::CplusplusClassGenerator::generateSource(const fs::path& dir, const std::string& sourcename, const std::vector<std::string>& namespaces)
 {
     std::fstream source;
     auto local = sourcename;
@@ -100,7 +106,16 @@ bool kudroma::code_assistant::CplusplusClassGenerator::generateSource(const fs::
         }
         else
         {
-            source << boost::str(boost::format(sourceTemplate_) % headerName);
+            std::string namespaceStr;
+            for (const auto& n : namespaces)
+                namespaceStr += boost::str(boost::format("%1%::") % n);
+            
+            if (!namespaceStr.empty())
+                namespaceStr.resize(namespaceStr.size() - 2);
+            std::string s = boost::str(boost::format(sourceTemplate_) % headerName % namespaceStr);
+            if (!s.empty())
+                s.resize(s.size() - 2);
+            source << s;
         }
     }
     else

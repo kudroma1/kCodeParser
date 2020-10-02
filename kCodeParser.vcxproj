@@ -88,14 +88,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_HAS_CXX17;_HAS_CXX20</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%QT_DIR_5_15%/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-x64-1_72.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%QT_DIR_5_15%/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Guid.lib;Qt5Qmld.lib;Qt5Quickd.lib;libboost_regex-vc142-mt-x64-1_72.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_HAS_CXX17;_HAS_CXX20</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%QT_DIR_5_15%/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%QT_DIR_5_15%/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-x64-1_72.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -124,14 +124,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_HAS_CXX17;_HAS_CXX20</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%QT_DIR_5_15%/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-gd-x64-1_74.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%QT_DIR_5_15%/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Guid.lib;Qt5Qmld.lib;Qt5Quickd.lib;libboost_regex-vc142-mt-gd-x64-1_74.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,7 +142,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_HAS_CXX17;_HAS_CXX20</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Qt\5.15.0\msvc2019_64\include;C:\Libraries\boost\boost_1_72_0\boost_1_72_0;%BOOST_DIR_INCLUDE%\;%QT_DIR_5_15%/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -150,7 +150,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Qt\5.15.0\msvc2019_64\lib;%BOOST_DIR_LIB%;%QT_DIR_5_15%/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Qt5Core.lib;libboost_regex-vc142-mt-x64-1_74.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

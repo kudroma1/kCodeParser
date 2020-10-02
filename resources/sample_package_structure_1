@@ -1,4 +1,5 @@
 lang cplusplus
+namespace one:two:three
 pk kudroma
     pk structures_theory
         pk sysved

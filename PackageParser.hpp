@@ -25,6 +25,7 @@ namespace kudroma {  namespace code_assistant {
 
     private:
         const boost::regex langRegex_{ "\\s*lang [a-zA-Z]*" };
+        const boost::regex namespaceRegex_{ "\\s*namespace [a-zA-Z:]*" };
         const boost::regex packageRegex_{ "\\s*pk [a-zA-Z_0-9]*\\s*" };
         const boost::regex classRegex_{ "\\s*cl [a-zA-Z_0-9]*\\s*" };
         const boost::regex classWithInheritanceRegex_{ "(\\s*cl [a-zA-Z_0-9]*\\s*):(\\s*[a-zA-Z_0-9]*\\s*)" };
@@ -34,6 +35,7 @@ namespace kudroma {  namespace code_assistant {
         std::shared_ptr<Item> parentItem_{ nullptr };
         std::shared_ptr<Item> lastItem_{ nullptr };
         uint8_t curHierarchyLevel_{ 0 };
+        std::vector<std::string> namespaces_;
 
         uint8_t tabSize_{ 4 };
 

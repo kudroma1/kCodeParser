@@ -8,16 +8,16 @@
 
 using namespace kudroma::code_assistant;
 
-bool IClassGenerator::generate(const fs::path& dir, std::string& name, const std::uint_fast8_t& properties)
+bool IClassGenerator::generate(const fs::path& dir, std::string& name, std::vector<std::string> namespaces, const std::uint_fast8_t& properties)
 {
     if (properties & CLASS)
-        return generateClass(dir, name);
+        return generateClass(dir, name, namespaces);
     if (properties & HEADER && properties & SOURCE)
-        return generateSource(dir, name) && generateHeader(dir, name);
+        return generateSource(dir, name, namespaces) && generateHeader(dir, name);
     if(properties & HEADER)
-        return generateHeader(dir, name);
+        return generateHeader(dir, name, namespaces);
     if (properties & SOURCE)
-        return generateSource(dir, name);
+        return generateSource(dir, name, namespaces);
     if (properties & EMPTY_FILE)
         return generateEmptyFile(dir, name);
 

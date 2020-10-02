@@ -13,9 +13,9 @@ public:
     CplusplusClassGenerator();
 
 protected:
-    virtual bool generateClass(const fs::path& dir, const std::string& classname) override;
-    virtual bool generateHeader(const fs::path& dir, const std::string& classname) override;
-    virtual bool generateSource(const fs::path& dir, const std::string& sourcename) override;
+    virtual bool generateClass(const fs::path& dir, const std::string& classname, const std::vector<std::string>& namespaces = std::vector<std::string>()) override;
+    virtual bool generateHeader(const fs::path& dir, const std::string& classname, const std::vector<std::string>& namespaces = std::vector<std::string>()) override;
+    virtual bool generateSource(const fs::path& dir, const std::string& sourcename, const std::vector<std::string>& namespaces = std::vector<std::string>()) override;
 
 private:
     std::string headerTemplate_;

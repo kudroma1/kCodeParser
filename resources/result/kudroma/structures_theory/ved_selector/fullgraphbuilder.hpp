@@ -1,5 +1,7 @@
 #pragma once
 
+namespace one{namespace two{namespace three{
+
 /** @brief  */
 class FullGraphBuilder
 {
@@ -11,3 +13,5 @@ public:
     /** @brief Default dtor. */
     ~FullGraphBuilder() = default;
 };
+
+}}}

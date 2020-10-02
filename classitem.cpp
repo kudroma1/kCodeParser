@@ -7,7 +7,8 @@
 
 using namespace kudroma::code_assistant;
 
-kudroma::code_assistant::ClassItem::ClassItem(const std::string& name, const std::string& lang, const std::shared_ptr<Item> parent) : Item(name, parent)
+kudroma::code_assistant::ClassItem::ClassItem(const std::string& name, const std::string& lang, const std::shared_ptr<Item> parent, std::vector<std::string> namespaces) 
+    : Item(name, parent), namespaces_(namespaces)
 {
     type_ = ItemType::Class;
 
@@ -19,5 +20,7 @@ kudroma::code_assistant::ClassItem::ClassItem(const std::string& name, const std
 bool kudroma::code_assistant::ClassItem::build()
 {
     if (classGenerator_)
-        return classGenerator_->generate(dir_, name_, IClassGenerator::CLASS);
+        return classGenerator_->generate(dir_, name_, namespaces_, IClassGenerator::CLASS);
+    else
+        return false;
 }

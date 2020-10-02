@@ -11,12 +11,13 @@ class IClassGenerator;
 class ClassItem : public Item
 {
 public:
-    ClassItem(const std::string& name, const std::string& lang, const std::shared_ptr<Item> parent);
+    ClassItem(const std::string& name, const std::string& lang, const std::shared_ptr<Item> parent, std::vector<std::string> namespaces = std::vector<std::string>());
 
     bool build() override;
 
 private:
     std::shared_ptr<IClassGenerator> classGenerator_{ nullptr };
+    std::vector<std::string> namespaces_;
 };
 }}
 
