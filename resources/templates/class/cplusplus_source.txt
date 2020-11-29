@@ -1,3 +1,19 @@
-#include "%1%"
+#include "%class_header%"
 
-using namespace %2%;
+using namespace %class_namespace%;
+
+%class_pimpl%
+
+%class_default_ctor%
+
+%class_default_dtor%
+
+%class_default_vdtor%
+
+%class_move_ctor%
+
+%class_copy_ctor%
+
+%class_op_copy_asign%
+
+%class_op_move_asign%

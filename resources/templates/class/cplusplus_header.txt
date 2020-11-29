@@ -1,17 +1,30 @@
 #pragma once
 
-%1%
+%class_includes%
+
+%class_namespace_start%
 
 /** @brief  */
-class %2%
+class %class_name%
 {
 public:
     
-    /** @brief Default ctor. */
-    %2%() = default;
-    
-    /** @brief Default dtor. */
-    ~%2%() = default;
+%class_default_ctor%
+
+%class_default_dtor%
+
+%class_default_vdtor%
+
+%class_move_ctor%
+
+%class_copy_ctor%
+
+%class_op_copy_asign%
+
+%class_op_move_asign%
+
+private:
+%class_pimpl%
 };
 
-%3%
+%class_namespace_end%

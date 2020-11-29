@@ -1,16 +1,20 @@
 #include "packageitem.h"
 
+#include "packagedesc.hpp"
+
 #include <boost/format.hpp>
 #include <boost/log/trivial.hpp>
 
-using namespace kudroma::code_assistant;
+using namespace kudroma::code_parser;
 
-PackageItem::PackageItem(const std::string& name, const std::shared_ptr<Item> parent) : Item(name, parent)
+PackageItem::PackageItem(const std::shared_ptr<PackageDesc> desc, const std::shared_ptr<Item> parent) : Item(parent)
 {
     type_ = ItemType::Package;
+    if(desc)
+        name_ = desc->name;
 }
 
-void kudroma::code_assistant::PackageItem::add(std::shared_ptr<Item> item)
+void kudroma::code_parser::PackageItem::add(std::shared_ptr<Item> item)
 {
     if (item)
     {
@@ -20,7 +24,7 @@ void kudroma::code_assistant::PackageItem::add(std::shared_ptr<Item> item)
     }
 }
 
-bool kudroma::code_assistant::PackageItem::build()
+bool kudroma::code_parser::PackageItem::build()
 {
     if (fs::exists(dir_))
     {

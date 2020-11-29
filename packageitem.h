@@ -4,12 +4,14 @@
 #include "item.h"
 
 namespace kudroma {
-namespace code_assistant {
+namespace code_parser {
+
+    class PackageDesc;
 
 class PackageItem : public Item
 {
 public:
-    PackageItem(const std::string& name, const std::shared_ptr<Item> parent);
+    PackageItem(const std::shared_ptr<PackageDesc> desc, const std::shared_ptr<Item> parent);
 
     void add(std::shared_ptr<Item> item) override;
 

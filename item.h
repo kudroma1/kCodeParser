@@ -8,7 +8,7 @@
 namespace fs = std::filesystem;
 
 namespace kudroma {
-namespace code_assistant {
+namespace code_parser {
 
     enum class ItemType {
         Item,
@@ -19,6 +19,7 @@ namespace code_assistant {
     class Item : std::enable_shared_from_this<Item>
     {
     public:
+        Item(const std::shared_ptr<Item> parent);
         Item(const std::string& name, const std::shared_ptr<Item> parent);
 
         virtual void add(std::shared_ptr<Item> item);

@@ -155,25 +155,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ClassDescription.cpp" />
-    <ClCompile Include="classgeneratorfactory.cpp" />
+    <ClCompile Include="classutilityfactory.cpp" />
     <ClCompile Include="classitem.cpp" />
     <ClCompile Include="cplusplusclassgenerator.cpp" />
+    <ClCompile Include="cplusplusclassparser.cpp" />
     <ClCompile Include="iclassgenerator.cpp" />
+    <ClCompile Include="iclassparser.cpp" />
+    <ClCompile Include="ipackageparser.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="kCodeParser.cpp" />
     <ClCompile Include="packageitem.cpp" />
-    <ClCompile Include="PackageParser.cpp" />
+    <ClCompile Include="mainparser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ClassDescription.h" />
-    <ClInclude Include="classgeneratorfactory.h" />
+    <ClInclude Include="ClassDesc.h" />
+    <ClInclude Include="classutilityfactory.hpp" />
     <ClInclude Include="classitem.h" />
     <ClInclude Include="cplusplusclassgenerator.hpp" />
+    <ClInclude Include="cplusplusclassparser.hpp" />
     <ClInclude Include="iclassgenerator.hpp" />
+    <ClInclude Include="iclassparser.h" />
+    <ClInclude Include="ipackageparser.hpp" />
     <ClInclude Include="item.h" />
-    <ClInclude Include="packageitem.h" />
-    <ClInclude Include="PackageParser.hpp" />
+    <ClInclude Include="packagedesc.hpp" />
+    <ClInclude Include="PackageItem.h" />
+    <ClInclude Include="mainparser.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

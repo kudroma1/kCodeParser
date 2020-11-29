@@ -18,9 +18,6 @@
     <ClCompile Include="kCodeParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PackageParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,24 +33,27 @@
     <ClCompile Include="cplusplusclassgenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="classgeneratorfactory.cpp">
+    <ClCompile Include="mainparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ClassDescription.cpp">
+    <ClCompile Include="cplusplusclassparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="classutilityfactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="iclassparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ipackageparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PackageParser.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="classitem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="packageitem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="iclassgenerator.hpp">
@@ -62,10 +62,28 @@
     <ClInclude Include="cplusplusclassgenerator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="classgeneratorfactory.h">
+    <ClInclude Include="ClassDesc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClassDescription.h">
+    <ClInclude Include="PackageItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mainparser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iclassparser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="classutilityfactory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cplusplusclassparser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ipackageparser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="packagedesc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

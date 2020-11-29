@@ -1,21 +1,22 @@
 // kCodeParser.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include "PackageParser.hpp"
+#include "mainparser.hpp"
 
 #include <iostream>
 #include <fstream>
 #include <string>
 
 #include <boost/algorithm/string.hpp>
+#include <boost/regex.hpp>
 
-using namespace kudroma::code_assistant;
+using namespace kudroma::code_parser;
 
 const std::string test_package_filename = "D:/Projects/kCodeParser/resources/sample_package_structure_1";
 
 int main()
 {
-    PackageParser parser;
+    MainParser parser;
     parser.parseProjectTree(test_package_filename, "D:/Projects/kCodeParser/resources/result");
     const auto res = parser.buildProjectTree();
 

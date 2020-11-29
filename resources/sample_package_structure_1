@@ -1,16 +1,15 @@
 lang cplusplus
-namespace one:two:three
 pk kudroma
     pk structures_theory
         pk sysved
-            cl Sysved 
-            cl StrongTheory : Sysved
-            cl RecipeKnowledge : Sysved
+            dcl kudroma::sysved::Sysved c vd = =&& & && pimpl
+            cl kudroma::sysved::StrongTheory : Sysved pimpl
+            cl kudroma::sysved::RecipeKnowledge : Sysved pimpl =&&
         pk ved_selector
-            cl VedSelector
-            cl Enumerator : VedSelector
-            cl FullGraphBuilder : VedSelector
-            cl MostRelevantTopic : VedSelector
-            cl SelfStudyingSelector : VedSelector
+            cl kudroma::sysved::VedSelector 
+            cl kudroma::sysved::Enumerator : VedSelector c d =
+            dcl kudroma::sysved::FullGraphBuilder : VedSelector c vd && &
+            cl kudroma::sysved::MostRelevantTopic : VedSelector c d = =&&
+            cl kudroma::sysved::SelfStudyingSelector : VedSelector c vd = =&& && &
 			
 			
